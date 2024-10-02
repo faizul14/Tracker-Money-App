@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "projek-android-template"
+rootProject.name = "tracker_money_app"
 include(":app")

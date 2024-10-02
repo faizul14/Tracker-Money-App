@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.faezolmp.projek_android_template"
+    namespace = "com.faezolmp.tracker_money_app"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.faezolmp.projek_android_template"
+        applicationId = "com.faezolmp.tracker_money_app"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
