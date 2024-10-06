@@ -1,6 +1,7 @@
 package com.faezolmp.tracker_money_app
 
 import android.app.Application
+import com.faezolmp.tracker_money_app.core.di.localModule
 import com.faezolmp.tracker_money_app.core.di.repositoryModule
 import com.faezolmp.tracker_money_app.presentation.di.appModule
 import org.koin.android.ext.koin.androidContext
@@ -15,6 +16,7 @@ class MainApplication(): Application() {
             androidContext(this@MainApplication)
             modules(
                 listOf(
+                    localModule,
                     repositoryModule,
                     appModule
                 )
