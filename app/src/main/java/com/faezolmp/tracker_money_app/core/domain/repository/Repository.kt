@@ -12,4 +12,6 @@ interface Repository {
     fun getMoneyByIn(): Flow<Resource<List<TramoModel>>>
     fun getMoneyByOut(): Flow<Resource<List<TramoModel>>>
     suspend fun insertMoney(data: TramoModel)
+    fun updateMoney(data: TramoModel)
+    fun deleteMoney(data: TramoModel)
 }

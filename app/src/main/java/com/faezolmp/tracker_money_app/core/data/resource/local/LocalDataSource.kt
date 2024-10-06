@@ -9,4 +9,6 @@ class LocalDataSource(private val tramoDao: TramoDao) {
     fun getMoneyByIn(): Flow<List<TramoEntity>> = tramoDao.getMoneyByIn()
     fun getMoneyByOut(): Flow<List<TramoEntity>> = tramoDao.getMoneyByOut()
     suspend fun insertMoney(data: TramoEntity) = tramoDao.insetMoney(data)
+    fun updateMoney(data: TramoEntity) = tramoDao.updateMoney(data)
+    fun deleteMoney(data: TramoEntity) = tramoDao.deleteMoney(data)
 }

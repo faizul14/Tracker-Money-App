@@ -52,4 +52,10 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
     override suspend fun insertMoney(data: TramoModel) {
         localDataSource.insertMoney(DataMapper.mapperDomainToData(data))
     }
+
+    override fun updateMoney(data: TramoModel) {
+        localDataSource.updateMoney(DataMapper.mapperDomainToData(data))
+    }
+
+    override fun deleteMoney(data: TramoModel) = localDataSource.deleteMoney(DataMapper.mapperDomainToData(data))
 }

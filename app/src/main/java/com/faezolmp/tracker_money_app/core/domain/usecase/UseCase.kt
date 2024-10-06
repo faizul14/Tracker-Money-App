@@ -11,4 +11,6 @@ interface UseCase {
     fun getAllMoney(): Flow<Resource<List<TramoModel>>>
     fun getMoneyByStatus(status: StatusMoney): Flow<Resource<List<TramoModel>>>
     suspend fun insertMoney(data: TramoModel)
+    fun updateMoney(data: TramoModel)
+    fun deleteMoney(data: TramoModel)
 }

@@ -1,8 +1,10 @@
 package com.faezolmp.tracker_money_app.core.data.resource.local.room
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.faezolmp.tracker_money_app.core.data.resource.local.entity.TramoEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -19,4 +21,10 @@ interface TramoDao {
 
     @Insert
     suspend fun insetMoney(data: TramoEntity)
+
+    @Update
+    fun updateMoney(data: TramoEntity)
+
+    @Delete
+    fun deleteMoney(data: TramoEntity)
 }
