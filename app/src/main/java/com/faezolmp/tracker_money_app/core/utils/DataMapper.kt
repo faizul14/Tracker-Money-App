@@ -18,7 +18,7 @@ object DataMapper {
     fun mapperDataToDomain(input: List<TramoEntity>): List<TramoModel> {
         val listData = ArrayList<TramoModel>()
         input.map {
-            val data = TramoModel(uid = 0, total = it.total, statusMoney = it.statusMoney, date = it.date)
+            val data = TramoModel(uid = 0, total = it.total, statusMoney = it.statusMoney,description = it.description, date = it.date)
 
             listData.add(data)
         }
@@ -26,6 +26,6 @@ object DataMapper {
     }
 
     fun mapperDomainToData(input: TramoModel): TramoEntity{
-        return TramoEntity(uid = 0, total = input.total, statusMoney = input.statusMoney, date = input.date)
+        return TramoEntity(uid = 0, total = input.total, statusMoney = input.statusMoney, description = input.description, date = input.date)
     }
 }

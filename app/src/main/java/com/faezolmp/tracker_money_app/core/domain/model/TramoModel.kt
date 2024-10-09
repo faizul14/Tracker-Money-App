@@ -4,5 +4,6 @@ data class TramoModel(
     val uid: Int = 0,
     val total: Long?,
     val statusMoney: String?, // in / out
-    val date: String?, // in / out
+    val description: String?,
+    val date: String?,
 )

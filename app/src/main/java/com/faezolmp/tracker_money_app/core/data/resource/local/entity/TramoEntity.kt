@@ -11,5 +11,6 @@ data class TramoEntity(
     val uid: Int = 0,
     @ColumnInfo(name = "total") val total: Long?,
     @ColumnInfo(name = "status_money") val statusMoney: String?, // in / out
-    @ColumnInfo(name = "date") val date: String?, // in / out
+    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "date") val date: String?,
 )

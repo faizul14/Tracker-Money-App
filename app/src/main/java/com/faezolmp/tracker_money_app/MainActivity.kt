@@ -9,8 +9,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.faezolmp.tracker_money_app.presentation.screen.Home.HomeScreen
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.compose.ui.graphics.toArgb
 import com.faezolmp.tracker_money_app.presentation.ui.theme.ProjekandroidtemplateTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,10 +26,18 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    Greeting("Android")
-                    HomeScreen()
+//                    HomeScreen()
+                    setStatusBarColor() // Mengatur warna status bar
+                    TramoApp()
                 }
             }
         }
+    }
+    private fun setStatusBarColor() {
+        // Ubah warna status bar menjadi hitam
+        window.statusBarColor = Color.Black.toArgb()
+        // Mengatur ikon menjadi terang
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
     }
 }
 
