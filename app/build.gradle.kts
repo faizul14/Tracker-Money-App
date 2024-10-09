@@ -88,5 +88,7 @@ dependencies {
 //    implementation(libs.room.ktx)
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
+//    Gson
+    implementation("com.google.code.gson:gson:2.8.8")
 
 }

@@ -62,10 +62,10 @@ import org.koin.compose.KoinApplication
 //}
 //
 @Composable
-fun DataList(data: List<TramoModel>) {
+fun DataList(data: List<TramoModel>, navigationToDetail: (TramoModel) -> Unit) {
     LazyColumn {
         items(data) { item ->
-            ItemTramoComponent(tramo = item)
+            ItemTramoComponent(tramo = item, navigationToDetail = {navigationToDetail(it)})
 
 //            Text(text = item.toString())
 //            Text(text = "ID: ${item.uid}, Total: ${item.total}, Status: ${item.statusMoney}, Date: ${item.date}, Threa ${Thread.currentThread().name}")
@@ -78,7 +78,8 @@ val FilterData = listOf<String>("All", "IN", "OUT")
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = koinViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigationToDetail: (TramoModel) -> Unit
 ) {
     var stateDataFilter by rememberSaveable {
         mutableStateOf("All")
@@ -183,7 +184,7 @@ fun HomeScreen(
             is Resource.Success -> {
                 val data = (dataState as Resource.Success).data
                 if (data != null) {
-                    DataList(data)
+                    DataList(data, navigationToDetail = {navigationToDetail(it)})
                 }
             }
 
@@ -203,7 +204,7 @@ fun HomeScreenPreview() {
     KoinApplication(application = {
         modules(appModule)
     }) {
-        HomeScreen()
+        HomeScreen(navigationToDetail = {})
     }
 
 }

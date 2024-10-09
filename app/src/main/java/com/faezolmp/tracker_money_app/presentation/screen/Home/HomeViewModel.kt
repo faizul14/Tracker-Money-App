@@ -107,7 +107,7 @@ class HomeViewModel(val useCase: UseCase) : ViewModel() {
                 total = "100000${i}".toLong(),
                 statusMoney = if (i % 2 == 0) "in" else "out",
                 description = if(i % 2 == 0) "WD Saham" else "Gorengan, Cilok, Martabak",
-                date = Date().toString() + Thread.currentThread().name
+                date = Date().toString()
             )
             useCase.insertMoney(dataDumy)
         }

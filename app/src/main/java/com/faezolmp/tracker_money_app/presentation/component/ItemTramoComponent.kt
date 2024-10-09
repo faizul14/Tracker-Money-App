@@ -1,5 +1,6 @@
 package com.faezolmp.tracker_money_app.presentation.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,19 +27,22 @@ import androidx.compose.ui.unit.dp
 import com.faezolmp.tracker_money_app.R
 import com.faezolmp.tracker_money_app.core.domain.model.TramoModel
 import com.faezolmp.tracker_money_app.core.utils.DataDummy
+import com.faezolmp.tracker_money_app.core.utils.FormatMoney.formatCurrency
 import java.text.NumberFormat
 import java.util.Currency
 
 @Composable
 fun ItemTramoComponent(
     modifier: Modifier = Modifier,
-    tramo: TramoModel
+    tramo: TramoModel,
+    navigationToDetail: (TramoModel) -> Unit
 ) {
     Card(
         colors = CardDefaults.cardColors(Color.Transparent),
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp, 4.dp)
+            .clickable { navigationToDetail(tramo) }
     ) {
         Row(
             modifier = Modifier
@@ -98,23 +102,14 @@ fun ItemTramoComponent(
     }
 }
 
-fun formatCurrency(amount: Long?): String {
-    return if (amount != null) {
-        NumberFormat.getCurrencyInstance().apply {
-            maximumFractionDigits = 0
-            currency = Currency.getInstance("IDR")
-        }.format(amount)
-    } else {
-        "N/A"
-    }
-}
+
 
 @Composable
 fun DataList(data: List<TramoModel>) {
     LazyColumn {
         items(data) { item ->
 //            Text(text = item.toString())
-            ItemTramoComponent(tramo = item)
+            ItemTramoComponent(tramo = item, navigationToDetail = {})
         }
     }
 }
