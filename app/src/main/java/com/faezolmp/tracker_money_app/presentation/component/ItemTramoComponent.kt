@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.faezolmp.tracker_money_app.R
 import com.faezolmp.tracker_money_app.core.domain.model.TramoModel
 import com.faezolmp.tracker_money_app.core.utils.DataDummy
+import com.faezolmp.tracker_money_app.core.utils.FormatDate
 import com.faezolmp.tracker_money_app.core.utils.FormatMoney.formatCurrency
 import java.text.NumberFormat
 import java.util.Currency
@@ -55,7 +56,7 @@ fun ItemTramoComponent(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = tramo.date ?: "N/A",
+                    text = FormatDate.formatByFmpStyle(tramo.date.toString()) ?: "N/A",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Black,
                     maxLines = 1,

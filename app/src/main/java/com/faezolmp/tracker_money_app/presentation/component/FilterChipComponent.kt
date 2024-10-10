@@ -25,20 +25,20 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterChipComponent(
-    isSelected: Boolean,
+    selected: Boolean,
     label: String,
     modifier: Modifier = Modifier,
     onSelected: (Boolean) -> Unit,
 ) {
-    var selected by rememberSaveable {
-        mutableStateOf(isSelected)
-    }
+//    var selected by rememberSaveable {
+//        mutableStateOf(isSelected)
+//    }
 
     FilterChip(
         selected = selected,
         onClick = {
-            selected = !selected
-            onSelected(selected)
+//            selected = !selected
+            onSelected(!selected)
         },
         label = {
             Column(
@@ -85,5 +85,5 @@ fun FilterChipComponentPreview() {
 //
 //        }
 //    )
-    FilterChipComponent(isSelected = false, label = "All", onSelected ={} )
+    FilterChipComponent(selected = false, label = "All", onSelected ={} )
 }

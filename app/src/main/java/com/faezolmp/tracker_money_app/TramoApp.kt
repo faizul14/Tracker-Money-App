@@ -32,6 +32,7 @@ fun TramoApp(
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = navBackStackEntry?.destination?.route
+//    val currentScreen = Screen.Home.router
     Scaffold(topBar = {
         if (currentScreen == Screen.Home.router){
             TopAppBar(title = {
