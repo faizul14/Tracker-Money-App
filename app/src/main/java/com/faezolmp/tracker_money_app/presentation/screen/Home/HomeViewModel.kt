@@ -56,6 +56,10 @@ class HomeViewModel(val useCase: UseCase) : ViewModel() {
     }
 
     init {
+        Log.d(
+            "VIEWMODEL",
+            "HIT VIEMODEL"
+        )
         viewModelScope.launch {
 
 //            DataDummy.dataDummy().collect{data ->
