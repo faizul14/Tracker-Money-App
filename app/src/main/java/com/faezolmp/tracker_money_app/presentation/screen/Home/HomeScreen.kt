@@ -74,17 +74,17 @@ import java.text.Format
 //
 @Composable
 fun DataList(data: List<TramoModel>, navigationToDetail: (TramoModel) -> Unit) {
-    val reversedData = data.reversed()
+//    val reversedData = data.reversed()
     // Menggunakan LazyListState untuk mengatur posisi scroll
     val listState = rememberLazyListState()
 
     // Efek yang dijalankan setiap kali data berubah
-    LaunchedEffect(reversedData) {
+    LaunchedEffect(data) {
         // Scroll ke item pertama (atas) ketika data baru ditambahkan
         listState.scrollToItem(0)
     }
     LazyColumn(state = listState, contentPadding = PaddingValues(top = 2.dp )) {
-        items(reversedData, key = {it.date.toString()}) { item ->
+        items(data) { item ->
             ItemTramoComponent(tramo = item, navigationToDetail = {navigationToDetail(it)})
 
 //            Text(text = item.toString())
@@ -93,7 +93,7 @@ fun DataList(data: List<TramoModel>, navigationToDetail: (TramoModel) -> Unit) {
     }
 }
 
-val FilterData = listOf<String>("All", "in", "out")
+val FilterData = listOf<String>("all", "in", "out")
 
 @Composable
 fun HomeScreen(
@@ -102,7 +102,7 @@ fun HomeScreen(
     navigationToDetail: (TramoModel) -> Unit
 ) {
     var stateDataFilter by rememberSaveable {
-        mutableStateOf("All")
+        mutableStateOf("all")
     }
     val dataState by viewModel.dataState.collectAsState()
     val moneyIn by viewModel.moneyIn.collectAsState()
@@ -230,7 +230,7 @@ fun HomeScreen(
                     ) {
                         Spacer(modifier = modifier.width(8.dp))
                         Text(
-                            text = "SALDO ANDA: ${moneyIn - moneyOut}",
+                            text = "SALDO ANDA: ${FormatMoney.formatCurrency(moneyIn - moneyOut)}",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Medium,
                             textAlign = TextAlign.Center,
@@ -253,7 +253,7 @@ fun HomeScreen(
             }
             Text(
                 text = countTrasaction.toString(),
-                fontSize = 80.sp,
+                fontSize = 60.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 textAlign = TextAlign.Center,

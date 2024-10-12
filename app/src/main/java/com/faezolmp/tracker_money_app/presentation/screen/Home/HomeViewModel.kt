@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.faezolmp.tracker_money_app.core.data.Resource
 import com.faezolmp.tracker_money_app.core.domain.model.TramoModel
 import com.faezolmp.tracker_money_app.core.domain.usecase.UseCase
+import com.faezolmp.tracker_money_app.core.utils.FormatDate
 import com.faezolmp.tracker_money_app.core.utils.StatusMoney
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -69,7 +70,7 @@ class HomeViewModel(val useCase: UseCase) : ViewModel() {
 //                }
 //            }
 
-            delay(7_000)
+            delay(3_000)
 
 //              for see kita berada di thread mana
             Log.d(
@@ -158,7 +159,7 @@ class HomeViewModel(val useCase: UseCase) : ViewModel() {
                 total = "100000${i}".toLong(),
                 statusMoney = if (i % 2 == 0) "in" else "out",
                 description = if (i % 2 == 0) "WD Saham" else "Gorengan, Cilok, Martabak",
-                date = Date().toString()
+                date = FormatDate.formatInputDate(Date())
             )
             useCase.insertMoney(dataDumy)
         }
@@ -171,7 +172,7 @@ class HomeViewModel(val useCase: UseCase) : ViewModel() {
             }
                 .map { data -> (data as Resource.Success).data ?: emptyList() }
                 .map { data ->
-                    if (dataFilter !== "All"){
+                    if (dataFilter !== "all"){
                         data.filter { it.statusMoney == dataFilter }
                     }else {
                         data

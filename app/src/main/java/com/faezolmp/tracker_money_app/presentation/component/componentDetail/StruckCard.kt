@@ -56,8 +56,12 @@ fun StruckCard(
             Column(horizontalAlignment = Alignment.End) {
 //                Text(text = "07 Okt 2024 • 18:37", fontSize = 12.sp, color = Color.Gray)
                 Log.d("DATE", "${tramoData.date.toString()}")
-                Text(text = FormatDate.formatByFmpStyle(tramoData.date.toString()), fontSize = 12.sp, color = Color.Gray)
-                Text(text = "ID DANA 0878••••0819", fontSize = 12.sp, color = Color.Gray)
+                Text(
+                    text = tramoData.date.toString(),
+                    fontSize = 12.sp,
+                    color = Color.Gray
+                )
+                Text(text = "ID TRAMO 0878••••0819", fontSize = 12.sp, color = Color.Gray)
             }
         }
 
@@ -249,7 +253,11 @@ fun PreviewStruckCardOut() {
 //            uid = 3867, total = 50_000L, statusMoney = "in", description = "WD Saham", date = "date"
 //        )
         tramoData = TramoModel(
-            uid = 3867, total = 5_000_000L, statusMoney = "out", description = "Gorengan, Cilok, Matabak, Bakso, Mie Ayam, Air Minum Coca Cola, Fanta", date = "Thu Oct 10 17:08:44 GMT 2024"
+            uid = 3867,
+            total = 5_000_000L,
+            statusMoney = "out",
+            description = "Gorengan, Cilok, Matabak, Bakso, Mie Ayam, Air Minum Coca Cola, Fanta",
+            date = "Thu Oct 10 17:08:44 GMT 2024"
         )
 
     )
@@ -261,7 +269,11 @@ fun PreviewStruckCardIn() {
     StruckCard(
         painter = painterResource(id = R.drawable.baseline_keyboard_double_arrow_down_24),
         tramoData = TramoModel(
-            uid = 3867, total = 50_000L, statusMoney = "in", description = "WD Saham", date = "2024-10-07 18:37:00"
+            uid = 3867,
+            total = 50_000L,
+            statusMoney = "in",
+            description = "WD Saham",
+            date = "2024-10-07 18:37:00"
         )
 //        tramoData = TramoModel(
 //            uid = 3867, total = 5_000_000L, statusMoney = "out", description = "Gorengan, Cilok, Matabak, Bakso, Mie Ayam, Air Minum Coca Cola, Fanta", date = "date"

@@ -22,7 +22,7 @@ object DataMapper {
 
             listData.add(data)
         }
-        return listData
+        return listData.reversed()
     }
 
     fun mapperDomainToData(input: TramoModel): TramoEntity{

@@ -55,7 +55,7 @@ fun ProjekandroidtemplateTheme(
         }
 
 //        darkTheme -> DarkColorScheme
-        darkTheme -> LightColorScheme
+//        darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
     val view = LocalView.current
@@ -64,7 +64,9 @@ fun ProjekandroidtemplateTheme(
             val window = (view.context as Activity).window
 //            window.statusBarColor = colorScheme.primary.toArgb()
             window.statusBarColor = LightColorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+//            SETTING UNTUK ICON STATUS BAR
+//            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
 

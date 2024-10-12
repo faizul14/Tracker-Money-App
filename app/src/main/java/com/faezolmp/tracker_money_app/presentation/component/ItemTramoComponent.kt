@@ -56,7 +56,8 @@ fun ItemTramoComponent(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = FormatDate.formatByFmpStyle(tramo.date.toString()) ?: "N/A",
+//                    text = FormatDate.formatByFmpStyle(tramo.date.toString()) ?: "N/A",
+                    text = tramo.date.toString() ?: "N/A",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Black,
                     maxLines = 1,
