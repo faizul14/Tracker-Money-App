@@ -3,6 +3,7 @@ package com.faezolmp.tracker_money_app.presentation.di
 import androidx.lifecycle.ViewModel
 import com.faezolmp.tracker_money_app.core.domain.usecase.UseCase
 import com.faezolmp.tracker_money_app.core.domain.usecase.UseCaseIteractor
+import com.faezolmp.tracker_money_app.presentation.screen.Detail.DetailViewModel
 import com.faezolmp.tracker_money_app.presentation.screen.Home.HomeViewModel
 import com.faezolmp.tracker_money_app.presentation.screen.payment.PaymentViewModel
 import org.koin.androidx.compose.get
@@ -18,4 +19,6 @@ val appModule = module {
     viewModelOf(::HomeViewModel) { bind<ViewModel>() }
 //    viewModel<PaymentViewModel>{PaymentViewModel(get())}
     viewModelOf(::PaymentViewModel){bind<ViewModel>()}
+//    viewModel<DetailViewModel>{DetailViewModel(get())}
+    viewModelOf(::DetailViewModel){bind<ViewModel>()}
 }

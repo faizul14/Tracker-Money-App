@@ -20,7 +20,7 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
         return Resource.Success(DataMapper.mapperExampleModelFromLayerDataToLayerDomain("Example data"))
     }
 
-//    this use collect for reactive data stream, continue
+    //    this use collect for reactive data stream, continue
     override fun getAllMoney(): Flow<Resource<List<TramoModel>>> = flow {
         try {
             emit(Resource.Loading())
@@ -32,13 +32,13 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
         }
     }.flowOn(Dispatchers.IO)
 
-//    this use m operator map for (menerusakan data flow yang sudah ada)
-    override fun getMoneyByIn(): Flow<Resource<List<TramoModel>>> = localDataSource.getMoneyByIn()
-        .map { data ->
-            Resource.Success(DataMapper.mapperDataToDomain(data))
-        }
+    //    this use m operator map for (menerusakan data flow yang sudah ada)
+    override fun getMoneyByIn(): Flow<Resource<List<TramoModel>>> =
+        localDataSource.getMoneyByIn().map { data ->
+                Resource.Success(DataMapper.mapperDataToDomain(data))
+            }
 
-//    this usage first for take first data
+    //    this usage first for take first data
     override fun getMoneyByOut(): Flow<Resource<List<TramoModel>>> = flow {
         try {
             emit(Resource.Loading())
@@ -57,5 +57,5 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
         localDataSource.updateMoney(DataMapper.mapperDomainToData(data))
     }
 
-    override fun deleteMoney(data: TramoModel) = localDataSource.deleteMoney(DataMapper.mapperDomainToData(data))
+    override suspend fun deleteMoney(data: TramoModel) = localDataSource.deleteMoney(DataMapper.mapperDomainToData(data))
 }

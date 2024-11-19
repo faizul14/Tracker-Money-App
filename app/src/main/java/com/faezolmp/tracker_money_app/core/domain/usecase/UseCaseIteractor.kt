@@ -30,5 +30,5 @@ class UseCaseIteractor(val repository: Repository) : UseCase {
 
     override fun updateMoney(data: TramoModel) = repository.updateMoney(data)
 
-    override fun deleteMoney(data: TramoModel) = repository.deleteMoney(data)
+    override suspend fun deleteMoney(data: TramoModel) = repository.deleteMoney(data)
 }

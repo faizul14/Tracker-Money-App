@@ -26,5 +26,5 @@ interface TramoDao {
     fun updateMoney(data: TramoEntity)
 
     @Delete
-    fun deleteMoney(data: TramoEntity)
+    suspend fun deleteMoney(data: TramoEntity)
 }
