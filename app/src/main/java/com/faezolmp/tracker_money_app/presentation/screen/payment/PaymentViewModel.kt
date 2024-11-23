@@ -16,7 +16,11 @@ class PaymentViewModel(private val useCase: UseCase) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val date = FormatDate.formatInputDate(Date())
             val data = TramoModel(
-                uid = 0, total = total.toLong(), statusMoney = status, description = description, date = date
+                uid = 0,
+                total = total.toLong(),
+                statusMoney = status,
+                description = description,
+                date = date
             )
             useCase.insertMoney(data)
         }

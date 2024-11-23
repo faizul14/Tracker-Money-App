@@ -23,7 +23,6 @@ import com.faezolmp.tracker_money_app.presentation.screen.Home.HomeScreen
 import com.faezolmp.tracker_money_app.presentation.screen.payment.PaymentSecren
 import com.faezolmp.tracker_money_app.presentation.ui.navigation.Screen
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -32,14 +31,11 @@ fun TramoApp(
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = navBackStackEntry?.destination?.route
-//    val currentScreen = Screen.Home.router
     Scaffold(topBar = {
-        if (currentScreen == Screen.Home.router){
+        if (currentScreen == Screen.Home.router) {
             TopAppBar(title = {
                 TopAppBarCustomComponent(navigateToPayment = {
                     navController.navigate(Screen.Payment.router)
-                }, navigateToPaid = {
-
                 })
             })
         }
@@ -52,20 +48,10 @@ fun TramoApp(
             composable(
                 Screen.Home.router
             ) {
-//                val tramoEx = TramoModel(
-//                    uid = 6437,
-//                    total = 4_000_000L,
-//                    statusMoney = null,
-//                    description = "Pay From BTPN",
-//                    date = null
-//                )
-//                val jsonTramo = Uri.encode(Gson().toJson(tramoEx))
-                HomeScreen(
-                    navigationToDetail = {tramodelData ->
-                        val jsonTramo = Uri.encode(Gson().toJson(tramodelData))
-                        navController.navigate(Screen.Detail.createRoute(jsonTramo))
-                    }
-                )
+                HomeScreen(navigationToDetail = { tramodelData ->
+                    val jsonTramo = Uri.encode(Gson().toJson(tramodelData))
+                    navController.navigate(Screen.Detail.createRoute(jsonTramo))
+                })
             }
             composable(
                 Screen.Payment.router
@@ -76,13 +62,12 @@ fun TramoApp(
             }
             composable(
                 Screen.Detail.router,
-                arguments = listOf(navArgument("tramo"){type = NavType.StringType})
-            ){navBackStackEntry ->
+                arguments = listOf(navArgument("tramo") { type = NavType.StringType })
+            ) { navBackStackEntry ->
                 val jsonTramo = navBackStackEntry.arguments?.getString("tramo")
                 val tramo = Gson().fromJson(jsonTramo, TramoModel::class.java)
-                DetailScreen (
-                    naviationToHome = {navController.popBackStack()},
-                    tramoData = tramo
+                DetailScreen(
+                    naviationToHome = { navController.popBackStack() }, tramoData = tramo
                 )
             }
         }

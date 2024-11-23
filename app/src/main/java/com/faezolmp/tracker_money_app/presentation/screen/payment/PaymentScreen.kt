@@ -20,7 +20,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -116,30 +115,23 @@ fun PaymentSecren(
             )
         }
         Column(
-            horizontalAlignment = Alignment.Start, modifier = modifier
-//                .fillMaxSize()
-//                .background(Color.Gray)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
+            horizontalAlignment = Alignment.Start,
+            modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-//            Text(
-//                text = "Total Payment"
-//            )
-//            Spacer(modifier = modifier.height(8.dp))
             Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = modifier.fillMaxWidth()
+                verticalAlignment = Alignment.CenterVertically, modifier = modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "Payment",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
-                    modifier = modifier.offset(0.dp, -2.dp)
+                    modifier = modifier.offset(0.dp, (-2).dp)
                 )
                 Text(
                     text = "IDR",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
-                    modifier = modifier.offset(14.dp, -2.dp)
+                    modifier = modifier.offset(14.dp, (-2).dp)
                 )
                 OutlinedTextField(
                     value = totalStateData,
@@ -163,22 +155,6 @@ fun PaymentSecren(
                     modifier = modifier.fillMaxWidth(),
                 )
             }
-//            OutlinedTextField(
-//                value = totalStateData,
-//                onValueChange = { totalStateData = it },
-//                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-//                placeholder = {
-//                    Text(text = "IDR00,00")
-//                },
-//                textStyle = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Normal),
-//                colors = TextFieldDefaults.outlinedTextFieldColors(
-//                    unfocusedBorderColor = Color.Transparent,
-//                    focusedBorderColor = Color.Transparent,
-//                    disabledBorderColor = Color.Transparent,
-//                    errorBorderColor = Color.Transparent
-//                ),
-//                modifier = modifier.fillMaxWidth(),
-//            )
 
             Spacer(modifier = modifier.height(4.dp))
 
@@ -209,14 +185,11 @@ fun PaymentSecren(
             ) {
                 FilterChipComponent(
                     selected = statusStateData == "in", label = "in", modifier = modifier
-//                        .fillMaxWidth(1f)
-//                        .fillMaxWidth(5f/10f)
                 ) {
                     statusStateData = "in"
                 }
                 FilterChipComponent(
                     selected = statusStateData == "out", label = "out", modifier = modifier
-//                        .fillMaxWidth(5f/10f)
                 ) {
                     statusStateData = "out"
                 }
@@ -224,10 +197,7 @@ fun PaymentSecren(
 
             Spacer(modifier = modifier.height(16.dp))
             Card(
-                modifier = Modifier
-                    .fillMaxWidth(),
-//                    .height(100.dp),
-//                    .padding(16.dp),
+                modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(Color.White),
                 shape = RoundedCornerShape(4.dp),
                 elevation = CardDefaults.cardElevation(8.dp)
@@ -235,13 +205,13 @@ fun PaymentSecren(
                 ItemTramoComponent(
                     tramo = TramoModel(
                         uid = 4954,
-                        total = if(totalStateData.isNotEmpty()){
+                        total = if (totalStateData.isNotEmpty()) {
                             FormatMoney.formatClearMoney(totalStateData)
-                        }else{
+                        } else {
                             0L
                         },
                         statusMoney = statusStateData,
-                        description = if(descriptionStateData.isNotEmpty()) descriptionStateData else "Payment Description",
+                        description = if (descriptionStateData.isNotEmpty()) descriptionStateData else "Payment Description",
                         date = FormatDate.formatInputDate(Date())
                     )
                 ) { }
@@ -251,7 +221,6 @@ fun PaymentSecren(
         Box(
             modifier = modifier
                 .fillMaxSize()
-//                .background(Color.Gray)
                 .padding(16.dp)
         ) {
             OutlinedButton(
@@ -269,14 +238,11 @@ fun PaymentSecren(
                             navigateToHome()
                         }
                     }
-//                    navigateToHome()
-                },
-                border = BorderStroke(1.dp, Color.Black), // Mengatur outline hitam
+                }, border = BorderStroke(1.dp, Color.Black), // Mengatur outline hitam
                 colors = ButtonDefaults.outlinedButtonColors(
                     contentColor = Color.Black // Mengatur warna teks button
 
-                ),
-                modifier = modifier
+                ), modifier = modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
             ) {

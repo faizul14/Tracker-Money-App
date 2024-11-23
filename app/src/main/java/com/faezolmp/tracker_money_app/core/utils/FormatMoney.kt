@@ -34,10 +34,10 @@ object FormatMoney {
         }
     }
 
-    fun formatClearMoney(amount: String): Long{
-        return  try {
-            amount.replace(",","").replace(".", "").toLong()
-        }catch (e: NumberFormatException){
+    fun formatClearMoney(amount: String): Long {
+        return try {
+            amount.replace(",", "").replace(".", "").toLong()
+        } catch (e: NumberFormatException) {
             0L
         }
     }

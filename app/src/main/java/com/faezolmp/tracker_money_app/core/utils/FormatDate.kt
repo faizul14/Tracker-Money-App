@@ -21,17 +21,17 @@ object FormatDate {
      * In case of any formatting errors, the function returns the original string
      * representation of the Date object.
      *
-     * @param Date The Date object to be formatted.
+     * @param date The Date object to be formatted.
      * @return The formatted date and time string in Indonesian locale, or the
      *         original string representation of the Date object if formatting fails.
      */
-    fun formatInputDate(Date: Date): String {
+    fun formatInputDate(date: Date): String {
         val outputFormat =
             SimpleDateFormat("dd MMM yyyy • HH:mm:ss", Locale("id", "ID")) // Locale Indonesia
-        try {
-            return outputFormat.format(Date)
+        return try {
+            outputFormat.format(date)
         } catch (e: Exception) {
-            return Date.toString()
+            date.toString()
         }
     }
 }

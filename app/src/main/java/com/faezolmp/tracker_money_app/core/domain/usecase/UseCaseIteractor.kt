@@ -7,7 +7,7 @@ import com.faezolmp.tracker_money_app.core.domain.repository.Repository
 import com.faezolmp.tracker_money_app.core.utils.StatusMoney
 import kotlinx.coroutines.flow.Flow
 
-class UseCaseIteractor(val repository: Repository) : UseCase {
+class UseCaseIteractor(private val repository: Repository) : UseCase {
     override fun exampleFunction(): Resource<ExampleModel> {
         return repository.invoke()
     }
@@ -16,14 +16,17 @@ class UseCaseIteractor(val repository: Repository) : UseCase {
         return repository.getAllMoney()
     }
 
-    override fun getMoneyByStatus(status: StatusMoney): Flow<Resource<List<TramoModel>>> = when(status){
-        StatusMoney.IN -> {
-            repository.getMoneyByIn()
+    override fun getMoneyByStatus(status: StatusMoney): Flow<Resource<List<TramoModel>>> =
+        when (status) {
+            StatusMoney.IN -> {
+                repository.getMoneyByIn()
+            }
+
+            StatusMoney.OUT -> {
+                repository.getMoneyByOut()
+            }
         }
-        StatusMoney.OUT -> {
-            repository.getMoneyByOut()
-        }
-    }
+
     override suspend fun insertMoney(data: TramoModel) {
         return repository.insertMoney(data)
     }

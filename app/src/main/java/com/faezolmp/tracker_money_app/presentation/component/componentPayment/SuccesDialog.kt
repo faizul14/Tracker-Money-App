@@ -37,14 +37,17 @@ fun SuccesDialog(modifier: Modifier = Modifier, description: String) {
             shape = RoundedCornerShape(16.dp),
         ) {
             Box(
-                modifier = modifier.fillMaxSize().background(Color.White)
-            ){
-                Box(modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(4f/10f)
-                    .align(Alignment.TopCenter)
-                    .background(Color.Black)
-                ){
+                modifier = modifier
+                    .fillMaxSize()
+                    .background(Color.White)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(4f / 10f)
+                        .align(Alignment.TopCenter)
+                        .background(Color.Black)
+                ) {
                     Icon(
                         painter = painterResource(R.drawable.baseline_cloud_done_24),
                         contentDescription = "icon succes insert data",
@@ -55,17 +58,12 @@ fun SuccesDialog(modifier: Modifier = Modifier, description: String) {
                 }
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = modifier.align(Alignment.BottomCenter).offset(0.dp, -80.dp)
+                    modifier = modifier
+                        .align(Alignment.BottomCenter)
+                        .offset(0.dp, -80.dp)
                 ) {
-//                    Icon(
-//                        painter = painterResource(R.drawable.baseline_keyboard_double_arrow_down_24),
-//                        contentDescription = "icon succes insert data",
-//                        tint = Color.Red
-//                    )
                     Text(
-                        text = "Payment Succes",
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold
+                        text = "Payment Succes", color = Color.Black, fontWeight = FontWeight.Bold
                     )
                     Text(
                         text = description,
@@ -73,7 +71,7 @@ fun SuccesDialog(modifier: Modifier = Modifier, description: String) {
                         color = Color.Black,
                         textAlign = TextAlign.Center,
                         maxLines = 1,
-                        modifier = modifier.fillMaxWidth(6f/10f)
+                        modifier = modifier.fillMaxWidth(6f / 10f)
                     )
                 }
             }

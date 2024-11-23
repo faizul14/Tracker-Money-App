@@ -11,11 +11,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class ImplRepository(private val localDataSource: LocalDataSource) : Repository {
-    val executor: ExecutorService = Executors.newSingleThreadExecutor()
     override fun invoke(): Resource<ExampleModel> {
         return Resource.Success(DataMapper.mapperExampleModelFromLayerDataToLayerDomain("Example data"))
     }
@@ -35,8 +32,8 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
     //    this use m operator map for (menerusakan data flow yang sudah ada)
     override fun getMoneyByIn(): Flow<Resource<List<TramoModel>>> =
         localDataSource.getMoneyByIn().map { data ->
-                Resource.Success(DataMapper.mapperDataToDomain(data))
-            }
+            Resource.Success(DataMapper.mapperDataToDomain(data))
+        }
 
     //    this usage first for take first data
     override fun getMoneyByOut(): Flow<Resource<List<TramoModel>>> = flow {
@@ -57,5 +54,6 @@ class ImplRepository(private val localDataSource: LocalDataSource) : Repository 
         localDataSource.updateMoney(DataMapper.mapperDomainToData(data))
     }
 
-    override suspend fun deleteMoney(data: TramoModel) = localDataSource.deleteMoney(DataMapper.mapperDomainToData(data))
+    override suspend fun deleteMoney(data: TramoModel) =
+        localDataSource.deleteMoney(DataMapper.mapperDomainToData(data))
 }

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,61 +21,35 @@ import com.faezolmp.tracker_money_app.R
 
 @Composable
 fun TopAppBarCustomComponent(
-    modifier: Modifier = Modifier,
-    navigateToPayment:() -> Unit,
-    navigateToPaid: () -> Unit
+    modifier: Modifier = Modifier, navigateToPayment: () -> Unit
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .fillMaxWidth()
-//            .padding(8.dp)
+        horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.fillMaxWidth()
     ) {
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
-                .padding(8.dp, 0.dp)
-        ){
+        Row(
+            verticalAlignment = Alignment.CenterVertically, modifier = modifier.padding(8.dp, 0.dp)
+        ) {
             Text(
                 text = "TraMo App", modifier = Modifier.weight(1f)
             )
             Text(
                 text = "?", modifier = Modifier
             )
-//            Spacer(modifier = Modifier.width(8.dp))
-//            Text(
-//                text = "+", modifier = Modifier
-//                    .weight(0.1f)
-//                    .clickable { navigateToPaid() }
-//            )
-//            Spacer(modifier = Modifier.width(8.dp))
-//            Text(
-//                text = "-", modifier = Modifier
-//                    .weight(0.1f)
-//                    .clickable { navigateToPayment() }
-//            )
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(
-                painter = painterResource(R.drawable.baseline_payment_24),
+            Icon(painter = painterResource(R.drawable.baseline_payment_24),
                 contentDescription = "payment Direction",
                 tint = Color.Black,
                 modifier = modifier
                     .size(34.dp)
                     .clickable {
                         navigateToPayment()
-                    }
-            )
+                    })
         }
-//        Divider(
-//            thickness = 1.dp,
-//            color = Color.Black
-//        )
-
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
 fun TopAppBarCustomComponentPreview() {
-    TopAppBarCustomComponent(navigateToPayment = {}, navigateToPaid = {})
+    TopAppBarCustomComponent(navigateToPayment = {})
 }

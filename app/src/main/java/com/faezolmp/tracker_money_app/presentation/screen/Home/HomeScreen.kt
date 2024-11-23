@@ -46,35 +46,10 @@ import com.faezolmp.tracker_money_app.presentation.component.ItemTramoComponent
 import com.faezolmp.tracker_money_app.presentation.di.appModule
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.KoinApplication
-import java.text.Format
 
-//@Composable
-//fun HomeScreen(
-//    viewModel: HomeViewModel = koinViewModel(), modifier: Modifier = Modifier
-//) {
-//
-//    val dataState by viewModel.dataState.collectAsState()
-//    when (dataState) {
-//        is Resource.Loading -> {
-//            CircularProgressIndicator()
-//        }
-//
-//        is Resource.Success -> {
-//            val data = (dataState as Resource.Success).data
-//            if (data != null) {
-//                DataList(data)
-//            }
-//        }
-//
-//        is Resource.Error -> {
-//            Text(text = (dataState as Resource.Error).message ?: "An error occurred")
-//        }
-//    }
-//}
-//
+
 @Composable
 fun DataList(data: List<TramoModel>, navigationToDetail: (TramoModel) -> Unit) {
-//    val reversedData = data.reversed()
     // Menggunakan LazyListState untuk mengatur posisi scroll
     val listState = rememberLazyListState()
 
@@ -83,12 +58,9 @@ fun DataList(data: List<TramoModel>, navigationToDetail: (TramoModel) -> Unit) {
         // Scroll ke item pertama (atas) ketika data baru ditambahkan
         listState.scrollToItem(0)
     }
-    LazyColumn(state = listState, contentPadding = PaddingValues(top = 2.dp )) {
+    LazyColumn(state = listState, contentPadding = PaddingValues(top = 2.dp)) {
         items(data) { item ->
-            ItemTramoComponent(tramo = item, navigationToDetail = {navigationToDetail(it)})
-
-//            Text(text = item.toString())
-//            Text(text = "ID: ${item.uid}, Total: ${item.total}, Status: ${item.statusMoney}, Date: ${item.date}, Threa ${Thread.currentThread().name}")
+            ItemTramoComponent(tramo = item, navigationToDetail = { navigationToDetail(it) })
         }
     }
 }
@@ -97,8 +69,8 @@ val FilterData = listOf<String>("all", "in", "out")
 
 @Composable
 fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel(),
     modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = koinViewModel(),
     navigationToDetail: (TramoModel) -> Unit
 ) {
     var stateDataFilter by rememberSaveable {
@@ -108,14 +80,12 @@ fun HomeScreen(
     val moneyIn by viewModel.moneyIn.collectAsState()
     val moneyOut by viewModel.moneyOut.collectAsState()
     val countTrasaction by viewModel.dataTransaction.collectAsState()
-//    val transactionState by viewModel.dataTransaction.collectAsState()
 
     Column(
         horizontalAlignment = Alignment.Start, modifier = modifier
     ) {
         Divider(
-            thickness = 1.dp,
-            color = Color.Black
+            thickness = 1.dp, color = Color.Black
         )
         Row(
             modifier = modifier
@@ -129,28 +99,6 @@ fun HomeScreen(
                     .fillMaxWidth(7f / 10f)
                     .padding(top = 16.dp)
             ) {
-//                Text(
-//                    text = "Cuan Diary",
-//                    fontSize = 24.sp,
-//                    fontWeight = FontWeight.Bold,
-//                    color = Color.Black
-//                )
-
-//                Box(
-//                    modifier = modifier.fillMaxSize(),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    Text(
-//                        text = "/ / / / / / / / /",
-//                        fontSize = 40.sp,
-//                        fontWeight = FontWeight.Bold,
-//                        color = Color.Black,
-//                        modifier = modifier,
-////                            .fillMaxHeight()
-////                            .align(Alignment.CenterVertically),
-//                        lineHeight = 60.sp // menambah jarak antar baris
-//                    )
-//                }
                 Row {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -236,23 +184,9 @@ fun HomeScreen(
                             textAlign = TextAlign.Center,
                         )
                     }
-//                    Row(
-//                        verticalAlignment = Alignment.CenterVertically,
-//                        horizontalArrangement = Arrangement.Center,
-//                        modifier = modifier.weight(1f),
-//                    ) {
-//                        Spacer(modifier = modifier.width(8.dp))
-//                        Text(
-//                            text = FormatMoney.formatCurrency(moneyOut),
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Medium,
-//                            textAlign = TextAlign.Center,
-//                        )
-//                    }
                 }
             }
-            Text(
-                text = countTrasaction.toString(),
+            Text(text = countTrasaction.toString(),
                 fontSize = 60.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -272,35 +206,25 @@ fun HomeScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(FilterData) { item ->
-                FilterChipComponent(
-                    selected = stateDataFilter == item,
+                FilterChipComponent(selected = stateDataFilter == item,
                     label = item,
                     onSelected = { selected ->
 //                    if (selected) stateDataFilter.add(item) else stateDataFilter.remove(item)
                         if (selected) stateDataFilter = item
-                        viewModel.FilterData(stateDataFilter)
+                        viewModel.filterData(stateDataFilter)
                     })
             }
         }
         Divider(
-            thickness = 1.dp,
-            color = Color.Black
+            thickness = 1.dp, color = Color.Black
         )
         Text(
-            text = "Home Screen ${stateDataFilter}",
-            modifier = modifier.padding(start = 8.dp)
+            text = "Home Screen $stateDataFilter", modifier = modifier.padding(start = 8.dp)
         )
-//        FilterChipComponent(label = "#FilterALL", onSelected = { selected ->
-////            if (selected) stateDataFilter.add("#FilterALL") else stateDataFilter.remove("#FilterALL")
-//            if (selected) stateDataFilter = "FilterALL" else stateDataFilter = "All"
-//        })
-
         when (dataState) {
             is Resource.Loading -> {
                 Box(
-                    modifier = modifier
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     LinearProgressIndicator()
                 }
@@ -309,7 +233,7 @@ fun HomeScreen(
             is Resource.Success -> {
                 val data = (dataState as Resource.Success).data
                 if (data != null) {
-                    DataList(data, navigationToDetail = {navigationToDetail(it)})
+                    DataList(data, navigationToDetail = { navigationToDetail(it) })
                 }
             }
 

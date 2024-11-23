@@ -1,6 +1,6 @@
 package com.faezolmp.tracker_money_app.presentation.screen.Detail
 
-import StruckCard
+import com.faezolmp.tracker_money_app.presentation.component.componentDetail.StruckCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -69,7 +69,7 @@ fun DetailScreen(
             }
         }
         Box(
-            modifier = modifier.offset(0.dp, -150.dp)
+            modifier = modifier.offset(0.dp, (-150).dp)
         ) {
             StruckCard(
                 tramoData = tramoData,

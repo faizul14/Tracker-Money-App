@@ -10,4 +10,4 @@ data class TramoModel(
     val statusMoney: String?, // in / out
     val description: String?,
     val date: String?,
-): Parcelable
+) : Parcelable

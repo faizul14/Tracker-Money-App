@@ -7,7 +7,7 @@ import com.faezolmp.tracker_money_app.core.utils.StatusMoney
 import kotlinx.coroutines.flow.Flow
 
 interface UseCase {
-    fun exampleFunction() : Resource<ExampleModel>
+    fun exampleFunction(): Resource<ExampleModel>
     fun getAllMoney(): Flow<Resource<List<TramoModel>>>
     fun getMoneyByStatus(status: StatusMoney): Flow<Resource<List<TramoModel>>>
     suspend fun insertMoney(data: TramoModel)

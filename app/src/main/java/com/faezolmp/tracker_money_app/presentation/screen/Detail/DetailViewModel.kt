@@ -7,7 +7,7 @@ import com.faezolmp.tracker_money_app.core.domain.usecase.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailViewModel(val useCase: UseCase) : ViewModel() {
+class DetailViewModel(private val useCase: UseCase) : ViewModel() {
     fun deleteItemTransaction(data: TramoModel) {
         viewModelScope.launch(Dispatchers.IO) {
             useCase.deleteMoney(data)

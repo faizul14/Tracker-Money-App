@@ -6,9 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tramoentity")
 data class TramoEntity(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "uid")
-    val uid: Int = 0,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "uid") val uid: Int = 0,
     @ColumnInfo(name = "total") val total: Long?,
     @ColumnInfo(name = "status_money") val statusMoney: String?, // in / out
     @ColumnInfo(name = "description") val description: String?,
